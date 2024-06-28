@@ -1,9 +1,9 @@
 {
-    "name": "node-red-contrib-example-lower-case",
-    "version": "0.0.0",
-    "description": "description",
+    "name": "@nhi/node-red-contrib-data-forge",
+    "version": "0.0.1",
+    "description": "Data Science nodes for Node-RED using Data-Forge. Includes custom debug node for displaying Data-Forge dataframes in table format.",
     "author": "BenVeenema",
-    "license": "ISC",
+    "license": "MIT",
     "node-red": {
         "nodes": {
             "filter": "dataForge/filter.js",
