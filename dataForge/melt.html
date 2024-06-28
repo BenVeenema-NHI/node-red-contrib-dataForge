@@ -1,0 +1,49 @@
+<script type="text/javascript">
+    RED.nodes.registerType('melt',{
+        category: 'dataForge',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:"", required: false},
+            idColumns: {value:"", required: true},
+            valueColumns: {value: "", required: false},
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "icons/dataForgeIcon.svg",
+        label: function() {
+            return this.name||"melt";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="melt">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-idColumns"><i class="fa fa-tag"></i> idColumns</label>
+        <input type="text" id="node-input-idColumns" placeholder="List of columns to keep (eg. Date, PartNumber, Cost)">
+    </div>
+    <div class="form-row">
+        <label for="node-input-valueColumns"><i class="fa fa-tag"></i> valueColumns</label>
+        <input type="text" id="node-input-valueColumns" placeholder="Optional list of columns to melt">
+    </div>
+</script>
+
+<script type="text/markdown" data-help-name="melt">
+Melts, or unpivots a dataframe from wide to long format. A powerful function that combines grouping, aggregation and sorting.
+Often used for prepping data reports for insertion into a database.
+
+### Inputs
+: payload (array | dataFrame)   : The data to melt
+: idColumns (string)            : Comma seperated list of columns to keep
+: valueColumns (string)         : Optional comma seperated list of columns to melt
+
+### Outputs
+: payload (array)       : The melted data in array format. Can be processed by non-dataForge nodes.
+: dataFrame (dataFrame) : The melted data in dataFrame format. Can be processed by dataForge nodes.
+
+### References
+* [DataForge melt](https://data-forge.github.io/data-forge-ts/classes/dataframe.html#melt)
+</script>

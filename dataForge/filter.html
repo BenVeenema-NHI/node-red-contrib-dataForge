@@ -1,0 +1,40 @@
+<script type="text/javascript">
+    RED.nodes.registerType('filter',{
+        category: 'dataForge',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:"", required: false},
+            conditions: {value:"", required: true},
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "icons/dataForgeIcon.svg",
+        label: function() {
+            return this.name||"filter";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="filter">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-conditions"><i class="fa fa-tag"></i> Conditions</label>
+        <input type="text" id="node-input-conditions" placeholder="List of conditions. (eg. row.value > 0 & row.date < today())">
+    </div>
+</script>
+
+<script type="text/markdown" data-help-name="filter">
+Filters rows of a dataframe based on a condition. Useful for data cleaning and preparation.
+### Inputs
+: payload (array | dataFrame) : The data to filter
+: conditions (string)         : condition to evaluate for each row. Truthy rows are kept. Falsy rows are removed.
+### Outputs
+: payload (array)             : The filtered data in array format. Can be processed by non-dataForge nodes.
+: dataFrame (dataFrame)       : The filtered data in dataFrame format. Can be processed by dataForge nodes.
+
+### Reference
+- [DataForge-filter](https://data-forge.github.io/data-forge-ts/classes/dataframe.html#filter)
+</script>

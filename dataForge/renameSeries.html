@@ -1,0 +1,38 @@
+<script type="text/javascript">
+    RED.nodes.registerType('renameSeries',{
+        category: 'dataForge',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:"", required: false},
+            seriesMappings: {value:"", required: true},
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "icons/dataForgeIcon.svg",
+        label: function() {
+            return this.name||"renameSeries";
+        }
+    });
+</script>
+<script type="text/html" data-template-name="renameSeries">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-seriesMappings"><i class="fa fa-tag"></i> Series Mappings</label>
+        <input type="text" id="node-input-seriesMappings" placeholder='{"oldColumnName": "newColumnName", ...}'>
+    </div>
+</script>
+<script type="text/markdown" data-help-name="renameSeries">
+Renames one or more series (columns) in a DataFrame. This is useful for aligning column names with expected output formats or making them more readable.
+
+### Inputs
+: payload (array | dataFrame) : The data containing the series to rename
+
+### Configuration
+: Series Mappings (JSON) : A JSON object mapping old column names to new ones. For example, `{"oldName": "newName", "oldName2": "newName2"}`.
+
+### Outputs
+: payload (array) : The data with renamed series in array format. Can be processed by non-dataForge nodes.
+</script>
