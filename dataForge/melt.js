@@ -10,8 +10,9 @@ module.exports = function(RED) {
 
         // Handle incoming messages
         node.on('input', function(msg) {
-            // Create a dataframe from the payload
-            const df = new dataForge.DataFrame(msg.payload);
+            // if msg.dataFrame is set, use that as the payload and deserialize it to a dataframe
+            // if not, use msg.payload as the payload
+            const df = msg.dataFrame ? dataForge.DataFrame.deserialize(msg.dataFrame) : new dataForge.DataFrame(msg.payload);
 
             // Define an array of column names that we want to keep in the pivoted data
             const idColumns = node.idColumns;
@@ -27,7 +28,7 @@ module.exports = function(RED) {
             // Set the payload property to the unpivoted dataframe, converted to an array. Node-Red can't handle the dataframe object
             // Set the dataFrame property to the dataframe object. This can be used in the next node to continue processing the data
             msg.payload = longData.toArray();
-            msg.dataFrame = longData;
+            msg.dataFrame = longData.serialize();
             node.send(msg);
         });
     }

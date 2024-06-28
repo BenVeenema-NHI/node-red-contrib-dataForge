@@ -10,14 +10,16 @@ module.exports = function(RED) {
         let node = this;
 
         node.on('input', function(msg) {
-            const df = new dataForge.DataFrame(msg.payload);
+            // if msg.dataFrame is set, use that as the payload and deserialize it to a dataframe
+            // if not, use msg.payload as the payload
+            const df = msg.dataFrame ? dataForge.DataFrame.deserialize(msg.dataFrame) : new dataForge.DataFrame(msg.payload);
 
             const conditionFunction = new Function('row', `return ${node.conditions};`);
 
             const filteredData = df.filter(conditionFunction);
 
             msg.payload = filteredData.toArray();
-            msg.dataFrame = filteredData;
+            msg.dataFrame = filteredData.serialize();
             node.send(msg);
         });
     }
