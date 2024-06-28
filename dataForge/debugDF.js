@@ -11,9 +11,12 @@ module.exports = function(RED) {
         let node = this;
 
         node.on('input', function(msg) {
+            // if node is not active, prevent the printing of debug messages
             if(node.active === false)  return;
             
-            const df = new dataForge.DataFrame(msg.payload);
+            // if msg.dataFrame is set, use that as the payload and deserialize it to a dataframe
+            // if not, use msg.payload as the payload
+            const df = msg.dataFrame ? dataForge.DataFrame.deserialize(msg.dataFrame) : new dataForge.DataFrame(msg.payload);
             
             debugMSG = RED.util.encodeObject(
                 {id:node.id, z:node.z, _alias: node._alias,  path:node._flow.path, name:node.name, topic:msg.topic, msg:df},
