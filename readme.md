@@ -7,6 +7,7 @@ More functions from Data-Forge will be added over time, as of release 0.0.1 the 
 - **Filter**: Allows filtering of data based on specified criteria.
 - **Melt**: Transforms data from wide format to long format.
 - **Rename Series**: Enables renaming of one or more series (columns) in a DataFrame.
+- **toCSV**: Converts data to CSV format for export or further processing.
 - **DebugDF**: A custom debug node tailored for visualizing Data-Forge DataFrames in a user-friendly table format.
 
 ## Installation

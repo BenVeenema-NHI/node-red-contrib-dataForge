@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    RED.nodes.registerType('toCSV',{
+        category: 'dataForge',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:"", required: false}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "icons/dataForgeIcon.svg",
+        label: function() {
+            return this.name||"toCSV";
+        }
+    });
+</script>
+<script type="text/html" data-template-name="toCSV">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+<script type="text/markdown" data-help-name="toCSV">
+Converts a DataFrame or an array payload to CSV format. This is useful for exporting data for use in other applications that support CSV format.
+
+### Inputs
+: payload (array | dataFrame) : The data to convert to CSV
+
+### Outputs
+: payload (string) : The data in CSV format.
+: dataFrame (dataFrame) : The data in dataFrame format. Can be processed by dataForge nodes.
+</script>

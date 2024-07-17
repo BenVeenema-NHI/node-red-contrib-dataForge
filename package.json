@@ -1,19 +1,24 @@
 {
-    "name": "@nhi/node-red-contrib-data-forge",
+    "name": "@nhimm/node-red-contrib-data-forge",
     "version": "0.0.1",
     "description": "Data Science nodes for Node-RED using Data-Forge. Includes custom debug node for displaying Data-Forge dataframes in table format.",
     "author": "BenVeenema",
     "license": "MIT",
     "node-red": {
+        "version": ">=2.0.0",
         "nodes": {
             "filter": "dataForge/filter.js",
             "melt": "dataForge/melt.js",
             "renameSeries": "dataForge/renameSeries.js",
+            "toCSV": "dataForge/toCSV.js",
             "debugDF": "dataForge/debugDF.js"
         }
     },
     "dependencies": {
         "data-forge": "^1.10.2",
         "node-red-node-test-helper": "^0.3.4"
+    },
+    "publishConfig": {
+            "access": "public"
     }
 }
